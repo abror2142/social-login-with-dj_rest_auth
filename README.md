@@ -1,4 +1,4 @@
-#Social Login With Django#
+# Social Login With Django
 
 The implementation of Social Login feature has been done using [*dj-rest-auth*](https://dj-rest-auth.readthedocs.io/) library.
 
