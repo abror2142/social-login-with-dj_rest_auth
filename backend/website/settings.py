@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'accounts',
+
     'rest_framework',
     'rest_framework.authtoken',
-    
     
     'dj_rest_auth',
     'django.contrib.sites',
@@ -168,3 +169,5 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
 }
+
+AUTH_USER_MODEL = 'accounts.User'

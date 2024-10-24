@@ -8,5 +8,7 @@ COPY ./entrypoint.sh /
 WORKDIR /home/app/frontend
 COPY . .
 
+COPY ../.env .
+
 EXPOSE 5173
 ENTRYPOINT [ "sh", "/entrypoint.sh" ]

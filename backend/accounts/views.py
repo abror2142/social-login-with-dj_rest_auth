@@ -20,5 +20,6 @@ def google_callback_handler(request: Request):
     code = request.query_params['code']
     response = requests.post('http://127.0.0.1:8000/accounts/google/login/', json={"code": code})
     json_response = response.json()
+    print(json_response)
     return Response('Hello!')
 
