@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("./assets/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.app-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0.5em;
+  font-weight: 550;
+  font-style: italic;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 0 5px;
+  border-bottom: 2px solid rgb(22, 10, 62);
+}
+
+.login-page {
+  width: 600px;
+  height: 300px;
+  background-color: rgba(217, 217, 217, 0.95);
+  border: 1px solid rgb(159, 159, 159);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.social-icons {
+  font-size: 1.8rem;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 60px;
+  /* border: 1px solid black; */
+  color: white;
+  border-radius: 10px;
+  background: linear-gradient(45deg, blue, red);
+}
+
+.login-page .title {
+  font-size: 1.2rem;
+}
+
+.dots {
+  font-weight: 900;
+  font-size: 2em;
+  letter-spacing: 5px;
+}
+
+.social-icon:hover {
+  font-size: 2rem;
+}
