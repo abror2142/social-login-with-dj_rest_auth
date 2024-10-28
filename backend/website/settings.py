@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     
     'dj_rest_auth',
-    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -54,8 +53,6 @@ INSTALLED_APPS = [
 
     'allauth.socialaccount.providers.google',
 ]
-
-SITE_ID = 1
 
 
 MIDDLEWARE = [
@@ -96,7 +93,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('DB_ENGINE', 'db.backends.sqlite3'),
+        'ENGINE': config('DB_ENGINE', 'django.db.backends.sqlite3'),
         'NAME': config('DB_NAME', 'db.sqlite3'),
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT'),
@@ -147,10 +144,16 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
+# Custom User Model
+AUTH_USER_MODEL = 'accounts.User'
+
+# Environment Variables
+GOOGLE_CLIENT_ID = config('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = config('GOOGLE_CLIENT_SECRET')
+GOOGLE_CALLBACK_URL = config('GOOGLE_CALLBACK_URL')
+GOOGLE_SITE = config('GOOGLE_SITE')
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -159,15 +162,34 @@ REST_FRAMEWORK = {
 }
 
 REST_AUTH = {
-    'USE_JWT': True,
-    'JWT_AUTH_COOKIE': 'my-app-auth',
-    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+    'USE_JWT': True,,
     'JWT_AUTH_RETURN_EXPIRATION': True,
+    # 'JWT_AUTH_HTTPONLY':False,
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=180),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=180),
 }
 
-AUTH_USER_MODEL = 'accounts.User'
+
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # Use Email / Password authentication
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "none" # Do not require email confirmation
+
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+# Connect local account and social account if local account with that email address already exists
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+SOCIALACCOUNT_STORE_TOKENS = True
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APPS": [
+            {
+                "client_id": GOOGLE_CLIENT_ID,
+                "secret": GOOGLE_CLIENT_SECRET,
+                "key": "",
+            },
+        ]
+    }
+}
