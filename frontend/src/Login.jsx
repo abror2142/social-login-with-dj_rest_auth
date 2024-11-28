@@ -5,11 +5,17 @@ import { faFacebook, faGithub, faGoogle } from "@fortawesome/free-brands-svg-ico
 
 function Login() {
 
-    let clientID = import.meta.env.VITE_CLIENT_ID
-    const callbackURL = import.meta.env.VITE_CALLBACK_URL
-    const url = "https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=" + callbackURL + "&prompt=consent&response_type=code&client_id=" + clientID + "&scope=openid%20email%20profile&access_type=offline"
-   
+    const googleClientID = import.meta.env.VITE_GOOGLE_CLIENT_ID
+    const googleCallbackURL = import.meta.env.VITE_GOOGLE_CALLBACK_URL
 
+    const googleSignInURL = "https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=" + googleCallbackURL + "&prompt=consent&response_type=code&client_id=" + googleClientID + "&scope=openid%20email%20profile&access_type=offline"
+    
+    const githubClientID = import.meta.env.VITE_GITHUB_CLIENT_ID
+    const githubCallbackURL = import.meta.env.VITE_GITHUB_CALLBACK_URL
+
+    const githubSignInURL = "https://github.com/login/oauth/authorize?redirect_uri=" + githubCallbackURL + "&prompt=consent&response_type=code&client_id=" + githubClientID + "&scope=user&access_type=offline"
+
+    
     return (
         <div className="login-page">
             <p>ENV: {import.meta.env.VITE_my_var}</p>
@@ -17,21 +23,28 @@ function Login() {
             <p className="dots">...</p>
             <p className="title">Login with:</p>
             <div className="social-icons">
-                <a href={url}>
+
+                <a href={googleSignInURL} className="social-icon-box">
                     <FontAwesomeIcon 
                         className="google-icon social-icon"
                         icon={faGoogle} 
-                        
                     />
-                 </a>
+                </a>
+
+                <a href={githubSignInURL} className="social-icon-box">
                     <FontAwesomeIcon 
                         className="github-icon social-icon"
                         icon={faGithub} 
                     />
-                <FontAwesomeIcon 
-                    className="facebook-icon social-icon"
-                    icon={faFacebook} 
-                />
+                </a>
+
+                <a href="#" className="social-icon-box">
+                    <FontAwesomeIcon 
+                        className="facebook-icon social-icon"
+                        icon={faFacebook} 
+                    />
+                </a>
+
             </div>
         </div>
     )

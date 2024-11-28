@@ -1,9 +1,12 @@
+# Envs
+.env
+.env-react
+
 .venv/
 __pycache__/
 
 *.sqlite3
 
-*.env
 # Logs
 logs
 *.log

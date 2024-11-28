@@ -37,6 +37,10 @@ services:
     restart: always
     ports:
       - '5173:5173'
+    volumes:
+      - type: bind
+        source: ./.env-react 
+        target: /home/app/frontend/.env
     depends_on:
       - backend
 
