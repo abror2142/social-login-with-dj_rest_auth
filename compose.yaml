@@ -21,7 +21,7 @@ services:
   
   backend:
     build: ./backend
-    container_name: backend
+    container_name: web_backend
     restart: always
     ports:
       - '8000:8000'
@@ -33,7 +33,7 @@ services:
 
   frontend:
     build: ./frontend
-    container_name: frontend
+    container_name: web_frontend
     restart: always
     ports:
       - '5173:5173'
@@ -43,6 +43,14 @@ services:
         target: /home/app/frontend/.env
     depends_on:
       - backend
+  
+  reverse_proxy:
+    build: ./nginx
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+      - frontend
 
 volumes:
   data:

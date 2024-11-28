@@ -18,7 +18,6 @@ function Login() {
     
     return (
         <div className="login-page">
-            <p>ENV: {import.meta.env.VITE_my_var}</p>
             <h1 className='app-header'>demo</h1>
             <p className="dots">...</p>
             <p className="title">Login with:</p>
