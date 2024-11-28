@@ -16,7 +16,7 @@ from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 
 
 
-class GoogleLogin(SocialLoginView): # if you want to use Authorization Code Grant, use this
+class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
     callback_url = 'http://127.0.0.1:8000/accounts/google/login/callback/'
     client_class = OAuth2Client
